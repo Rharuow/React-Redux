@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.css';
-import Card from './components/Card';
 import Interval from './components/Interval'
+import Media from './components/Media'
+import Sum from './components/Sum'
+import Choose from './components/Choose'
 
 function App() {
   return (
@@ -13,9 +15,9 @@ function App() {
         </Interval>
       </div>
       <div className="line">
-        <Card title="Card 2" blue>Card</Card>
-        <Card title="Card 3" purple>Card</Card>
-        <Card title="Card 4" green>Card</Card>
+        <Media>Card</Media>
+        <Sum>Card</Sum>
+        <Choose>Card</Choose>
       </div>
     </div>
   );
