@@ -1,3 +1,5 @@
+import { NUM_MIN_ALTERED, NUM_MAX_ALTERED } from '../actions/actionsTypes'
+
 const initialState = {
     min: 1,
     max: 2
@@ -6,13 +8,13 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case 'NUM_MIN_ALTERED':
+        case NUM_MIN_ALTERED:
             return {
                 ...state,
                 min: action.payload,
                 max: state.max <= action.payload ? action.payload + 1 : state.max 
             }
-        case 'NUM_MAX_ALTERED':
+        case NUM_MAX_ALTERED:
             return {
                 ...state,
                 max: action.payload,
