@@ -4,24 +4,22 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Card from './Card'
-import { alterNumberMin } from '../store/actions/numeros'
+import { alterNumberMin, alterNumberMax } from '../store/actions/numeros'
 
 const Interval = props => {
 
     const { min, max } = props
-
-    props.alterMinNumber(1000)
 
     return (
         <Card title="Invervalo de Números" red>
             <div className="Interval">
                 <span>
                     <strong>Mínimo : </strong>
-                    <input type="number" value={min} min={min}/>
+                    <input type="number" value={min} onChange={e => props.alterMinNumber(+e.target.value) } max={max}/>
                 </span>
                 <span>
                     <strong>Máximo : </strong>
-                    <input type="number" value={max} max={max}/>
+                    <input type="number" value={max} onChange={e => props.alterMaxNumber(+e.target.value)} min={min}/>
                 </span>
             </div>
         </Card>
@@ -35,11 +33,15 @@ const mapStateToProps = state => {
     }
 }
 
-const mapActionCreatorsToProps = (dispatch) => {
+const mapDispathToProps = (dispatch) => {
     return {
         //function that can be accessed by props
         alterMinNumber(newNumber) {
             const action = alterNumberMin(newNumber)
+            dispatch(action)
+        },
+        alterMaxNumber(newNumber) {
+            const action = alterNumberMax(newNumber)
             dispatch(action)
         }
     }
@@ -47,7 +49,7 @@ const mapActionCreatorsToProps = (dispatch) => {
 
 export default connect(
         mapStateToProps,
-        mapActionCreatorsToProps
+        mapDispathToProps
     )(
         Interval
     )

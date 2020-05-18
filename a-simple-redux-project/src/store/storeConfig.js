@@ -7,12 +7,19 @@ const reducers = combineReducers({
             case 'NUM_MIN_ALTERED':
                 return {
                     ...state,
-                    min: action.payload
+                    min: action.payload,
+                    max: state.max <= action.payload ? action.payload + 1 : state.max 
+                }
+            case 'NUM_MAX_ALTERED':
+                return {
+                    ...state,
+                    max: action.payload,
+                    min: state.min >= action.payload ? action.payload - 1 : state.min 
                 }
             default:
                 return {
-                    min: 7,
-                    max: 31
+                    min: 1,
+                    max: 2
                 }
         }
     },
